@@ -1,0 +1,13 @@
+.profile__user-edit {
+  margin: 0;
+  display: flex;
+  max-width: 400px;
+}
+
+@media screen and (max-width: 660px) {
+  .profile__user-edit {
+    margin-bottom: 7px;
+    justify-content: center;
+    margin-left: 27px;
+  }
+}
