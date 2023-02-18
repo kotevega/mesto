@@ -2,6 +2,6 @@
 
 Проект представляет собой персональную страницу Usera с возможностью добавления фотографий.
 
-Ссылка на сайт https://kotevega.github.io/russian-travel-project/
+Ссылка на сайт https://kotevega.github.io/mesto/
 
 Проект написан на языке html, css, JavaScript.
