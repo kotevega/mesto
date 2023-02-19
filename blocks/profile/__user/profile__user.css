@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 715px) {
   .profile__user {
     margin-bottom: 7px;
     max-width: 282px;

@@ -5,21 +5,12 @@
   max-width: 430px;
   width: 100%;
   height: max-content;
-  margin-top: 195px;
   position: relative;
-  /* position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -60%); */
   z-index: 2;
 }
 
 @media screen and (max-width: 660px) {
   .popup__container {
     max-width: 282px;
-    margin-top: 123px;
-    /* left: 50%;
-    top: 42%;
-    transform: translate(-50%, -51%); */
   }
 }
