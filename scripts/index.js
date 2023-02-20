@@ -9,10 +9,8 @@ let formElement = document.querySelector(".popup__container");
 
 editPtofileButton.addEventListener("click", function () {
   editPopup.classList.add("popup_opened");
-  popupNameInput.value = profileNameInput.innerHTML;
-  popupJobInput.value = profileJobInput.innerHTML;
-  profileNameInput.textContent = popupNameInput.value;
-  profileJobInput.textContent = popupJobInput.value;
+  popupNameInput.value = profileNameInput.textContent;
+  popupJobInput.value = profileJobInput.textContent;
 });
 
 closePopup.addEventListener("click", closePopupUser);

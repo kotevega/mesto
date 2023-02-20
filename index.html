@@ -1,57 +1,35 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
   </head>
   <body class="page">
     <header class="header">
-      <img src="./images/logo.svg" alt="логотип Место" class="header__logo" />
+      <img src="./images/logo.svg" alt="логотип Место" class="header__logo">
     </header>
-    <main>
+    <main class="main">
       <section class="profile">
         <img
           src="./images/Avatar.jpg"
           alt="фото пользователя"
-          class="profile__avatar"
-        />
+          class="profile__avatar">
         <div class="profile__info">
           <div class="profile__user">
             <div class="profile__user-edit">
               <h1 id="profile-name" class="profile__name">Жак-Ив Кусто</h1>
-              <button type="button" id="profile-edit-button" class="profile__edit-button"></button>
+              <button
+                type="button"
+                id="profile-edit-button"
+                class="profile__edit-button"
+              ></button>
             </div>
             <p id="profile-occupation" class="profile__occupation">Исследователь океана</p>
           </div>
           <button type="button" class="profile__add-button"></button>
-        </div>
-      </section>
-      <section id="popup" class="popup">
-        <div class="popup__container">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form name="popup_form" class="popup__form">
-            <input
-              type="text"
-              name="user_name"
-              placeholder="Имя"
-              id="popup-user-name"
-              class="popup__field"
-            />
-            <input
-              type="text"
-              name="user_job"
-              placeholder="Род деятельности"
-              id="popup-user-job"
-              class="popup__field"
-            />
-            <button type="submit" class="popup__submit-button">
-              Сохранить
-            </button>
-          </form>
-          <button type="button" id="close-popup" class="popup__close-button"></button>
         </div>
       </section>
       <section class="elements" aria-label="Фотографии пользователя">
@@ -60,21 +38,19 @@
             <img
               class="element__image"
               src="./images/element-karachaevsk.jpg"
-              alt="Карачаевск"
-            />
+              alt="Карачаевск">
             <div class="element__object">
-              <h3 class="element__caption">Карачаевск</h3>
+              <h2 class="element__caption">Карачаевск</h2>
               <button type="button" class="element__like-button"></button>
             </div>
           </li>
           <li class="element__list">
             <img
               class="element__image"
-              src="./images/element-elbrus.jpg"
-              alt="Эльбрус"
-            />
+              alt="Гора Эльбрус"
+              src="./images/element-elbrus.jpg">
             <div class="element__object">
-              <h3 class="element__caption">Гора Эльбрус</h3>
+              <h2 class="element__caption">Гора Эльбрус</h2>
               <button type="button" class="element__like-button"></button>
             </div>
           </li>
@@ -82,10 +58,9 @@
             <img
               class="element__image"
               src="./images/element-dombai.jpg"
-              alt="Домбай"
-            />
+              alt="Домбай">
             <div class="element__object">
-              <h3 class="element__caption">Домбай</h3>
+              <h2 class="element__caption">Домбай</h2>
               <button type="button" class="element__like-button"></button>
             </div>
           </li>
@@ -93,10 +68,9 @@
             <img
               class="element__image"
               src="./images/element-gora_elbrus.jpg"
-              alt="Эльбрус"
-            />
+              alt="Эльбрус">
             <div class="element__object">
-              <h3 class="element__caption">Гора Эльбрус</h3>
+              <h2 class="element__caption">Гора Эльбрус</h2>
               <button type="button" class="element__like-button"></button>
             </div>
           </li>
@@ -104,10 +78,9 @@
             <img
               class="element__image"
               src="./images/element-dombai_ozero.jpg"
-              alt="Домабй"
-            />
+              alt="Домабй">
             <div class="element__object">
-              <h3 class="element__caption">Домбай</h3>
+              <h2 class="element__caption">Домбай</h2>
               <button type="button" class="element__like-button"></button>
             </div>
           </li>
@@ -115,18 +88,42 @@
             <img
               class="element__image"
               src="./images/element-karachaevo_cherkesiya.jpg"
-              alt="Карачаево-Черкеccия"
-            />
+              alt="Карачаево-Черкеccия">
             <div class="element__object">
-              <h3 class="element__caption">Карачаево-Черкесcия</h3>
+              <h2 class="element__caption">Карачаево-Черкесcия</h2>
               <button type="button" class="element__like-button"></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
+    <section id="popup" class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form name="popup_form" class="popup__form">
+          <input
+            type="text"
+            name="user_name"
+            placeholder="Имя"
+            id="popup-user-name"
+            class="popup__field">
+          <input
+            type="text"
+            name="user_job"
+            placeholder="Род деятельности"
+            id="popup-user-job"
+            class="popup__field">
+          <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+        <button
+          type="button"
+          id="close-popup"
+          class="popup__close-button">
+        </button>
+      </div>
+    </section>
     <footer class="footer">
-      <p>© 2020 Mesto Russia</p>
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
     <script src="./scripts/index.js"></script>
   </body>
