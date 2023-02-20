@@ -5,6 +5,7 @@
   height: 120px;
   object-position: center;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 @media screen and (max-width: 715px) {
