@@ -39,5 +39,6 @@
 @import url(../blocks/zoom/__heading/zoom__heading.css);
 @import url(../blocks/zoom/__container/zoom__container.css);
 @import url(../blocks/zoom/__card/zoom__card.css);
+@import url(../blocks/zoom/__close-button/zoom__close-button.css);
 
 

@@ -58,10 +58,10 @@ const element = document.querySelector(".element");
 const editPlaceButton = document.querySelector(".profile__add-button");
 const editPopupPlace = document.querySelector("#popup-place");
 const closePopupPlace = document.querySelector("#close-popup-place");
+const closePopupImage = document.querySelector("#close-popup-image");
 const formElementPlace = document.querySelector("#popup-place-container");
 const formPlace = document.querySelector("#popup-form-place");
 const popupZoom = document.querySelector(".zoom");
-const closePopupImage = document.querySelector("#close-popup-image");
 const popupImageZoom = document.querySelector(".zoom__image");
 const popupZoomHeading = document.querySelector(".zoom__heading")
 
