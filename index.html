@@ -24,8 +24,8 @@
               <button
                 type="button"
                 id="profile-edit-button"
-                class="profile__edit-button"
-              ></button>
+                class="profile__edit-button">
+              </button>
             </div>
             <p id="profile-occupation" class="profile__occupation">Исследователь океана</p>
           </div>
@@ -34,73 +34,28 @@
       </section>
       <section class="elements" aria-label="Фотографии пользователя">
         <ul class="element">
-          <li class="element__list">
-            <img
-              class="element__image"
-              src="./images/element-karachaevsk.jpg"
-              alt="Карачаевск">
-            <div class="element__object">
-              <h2 class="element__caption">Карачаевск</h2>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </li>
-          <li class="element__list">
-            <img
-              class="element__image"
-              alt="Гора Эльбрус"
-              src="./images/element-elbrus.jpg">
-            <div class="element__object">
-              <h2 class="element__caption">Гора Эльбрус</h2>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </li>
-          <li class="element__list">
-            <img
-              class="element__image"
-              src="./images/element-dombai.jpg"
-              alt="Домбай">
-            <div class="element__object">
-              <h2 class="element__caption">Домбай</h2>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </li>
-          <li class="element__list">
-            <img
-              class="element__image"
-              src="./images/element-gora_elbrus.jpg"
-              alt="Эльбрус">
-            <div class="element__object">
-              <h2 class="element__caption">Гора Эльбрус</h2>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </li>
-          <li class="element__list">
-            <img
-              class="element__image"
-              src="./images/element-dombai_ozero.jpg"
-              alt="Домабй">
-            <div class="element__object">
-              <h2 class="element__caption">Домбай</h2>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </li>
-          <li class="element__list">
-            <img
-              class="element__image"
-              src="./images/element-karachaevo_cherkesiya.jpg"
-              alt="Карачаево-Черкеccия">
-            <div class="element__object">
-              <h2 class="element__caption">Карачаево-Черкесcия</h2>
-              <button type="button" class="element__like-button"></button>
-            </div>
-          </li>
+          <template id="element-template">
+            <li class="element__list">
+              <button class="element__button-image">
+                <img
+                 class="element__image"
+                 src=""
+                 alt="">
+              </button>
+              <button type="button" class="element__delete-button"></button>
+              <div class="element__object">
+                <h2 class="element__caption"></h2>
+                <button type="button" class="element__like-button"></button>
+              </div>
+            </li>
+          </template>
         </ul>
       </section>
     </main>
-    <section id="popup" class="popup">
-      <div class="popup__container">
+    <div id="popup-user" class="popup">
+      <div id="popup-user-container" class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="popup_form" class="popup__form">
+        <form name="popup_form_user" class="popup__form">
           <input
             type="text"
             name="user_name"
@@ -117,11 +72,52 @@
         </form>
         <button
           type="button"
-          id="close-popup"
+          id="close-popup-user"
           class="popup__close-button">
         </button>
       </div>
-    </section>
+    </div>
+    <div id="popup-place" class="popup">
+      <div id="popup-place-container" class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form id="popup-form-place" name="popup_form_place" class="popup__form">
+          <input
+            type="text"
+            name="image_name"
+            placeholder="Название"
+            id="input-place-name"
+            class="popup__field">
+          <input
+            type="text"
+            name="image_link"
+            placeholder="Ссылка на картинку"
+            id="input-place-link"
+            class="popup__field">
+          <button type="submit" class="popup__submit-button">Создать</button>
+        </form>
+        <button
+          type="button"
+          id="close-popup-place"
+          class="popup__close-button">
+        </button>
+      </div>
+    </div>
+    <div class="zoom">
+      <div class="zoom__container">
+        <figure class="zoom__card">
+          <img
+            class="zoom__image"
+            src="#"
+            alt="#">
+          <figcaption class="zoom__heading"></figcaption>
+        </figure>
+        <button
+          type="button"
+          id="close-popup-image"
+          class="popup__close-button">
+        </button>
+      </div> 
+    </div>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
