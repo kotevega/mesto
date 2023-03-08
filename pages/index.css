@@ -33,12 +33,8 @@
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
-@import url(../blocks/zoom/zoom.css);
-@import url(../blocks/zoom/_opened/zoom_opened.css);
-@import url(../blocks/zoom/__image/zoom__image.css);
-@import url(../blocks/zoom/__heading/zoom__heading.css);
-@import url(../blocks/zoom/__container/zoom__container.css);
-@import url(../blocks/zoom/__card/zoom__card.css);
-@import url(../blocks/zoom/__close-button/zoom__close-button.css);
-
-
+@import url(../blocks/popup/__card/popup__card.css);
+@import url(../blocks/popup/__heading/popup__heading.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/_type-zoom/popup_type-zoom.css);
+@import url(../blocks/popup/__area/popup__area.css);

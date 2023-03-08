@@ -23,7 +23,6 @@
               <h1 id="profile-name" class="profile__name">Жак-Ив Кусто</h1>
               <button
                 type="button"
-                id="profile-edit-button"
                 class="profile__edit-button">
               </button>
             </div>
@@ -34,28 +33,31 @@
       </section>
       <section class="elements" aria-label="Фотографии пользователя">
         <ul class="element">
-          <template id="element-template">
-            <li class="element__list">
-              <button class="element__button-image">
-                <img
-                 class="element__image"
-                 src="#"
-                 alt="#">
-              </button>
-              <button type="button" class="element__delete-button"></button>
-              <div class="element__object">
-                <h2 class="element__caption"></h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-          </template>
         </ul>
       </section>
     </main>
-    <div id="popup-user" class="popup">
+    <footer class="footer">
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <template id="element-template">
+      <li class="element__list">
+        <button class="element__button-image">
+          <img
+           class="element__image"
+           src="#"
+           alt="#">
+        </button>
+        <button type="button" class="element__delete-button"></button>
+        <div class="element__object">
+          <h2 class="element__caption"></h2>
+          <button type="button" class="element__like-button"></button>
+        </div>
+      </li>
+    </template>
+    <div id="popup-user" class="popup popup_type-user">
       <div id="popup-user-container" class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="popup_form_user" class="popup__form">
+        <form name="popup_form_user" class="popup__form popup__form_user">
           <input
             type="text"
             name="user_name"
@@ -73,54 +75,51 @@
         <button
           type="button"
           id="close-popup-user"
-          class="popup__close-button">
+          class="popup__close-button popup__close-button_type_user">
         </button>
       </div>
     </div>
-    <div id="popup-place" class="popup">
+    <div id="popup-place" class="popup popup_type-place">
       <div id="popup-place-container" class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form id="popup-form-place" name="popup_form_place" class="popup__form">
+        <form name="popup_form_place" class="popup__form popup__form-place">
           <input
             type="text"
             name="image_name"
             placeholder="Название"
-            id="input-place-name"
+            id="input-place-name-image"
             class="popup__field">
           <input
             type="text"
             name="image_link"
             placeholder="Ссылка на картинку"
-            id="input-place-link"
+            id="input-place-link-image"
             class="popup__field">
           <button type="submit" class="popup__submit-button">Создать</button>
         </form>
         <button
           type="button"
-          id="close-popup-place"
-          class="popup__close-button">
+          class="popup__close-button popup__close-button_type_place">
         </button>
       </div>
     </div>
-    <div class="zoom">
-      <div class="zoom__container">
-        <figure class="zoom__card">
+    <div class="popup popup_type-zoom">
+      <div class="popup__area">
+        <figure class="popup__card">
           <img
-            class="zoom__image"
-            src="#"
+            class="popup__image"
+            src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
             alt="#">
-          <figcaption class="zoom__heading"></figcaption>
+          <figcaption class="popup__heading"></figcaption>
         </figure>
         <button
           type="button"
           id="close-popup-image"
-          class="zoom__close-button">
+          class="popup__close-button popup__close-button_type_image">
         </button>
       </div> 
     </div>
-    <footer class="footer">
-      <p class="footer__copyright">© 2020 Mesto Russia</p>
-    </footer>
+    <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

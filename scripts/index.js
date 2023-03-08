@@ -1,135 +1,121 @@
-const editPtofileButton = document.querySelector("#profile-edit-button");
-const editPopupProfile = document.querySelector("#popup-user");
-const closePopupProfile = document.querySelector("#close-popup-user");
+const buttonEditPtofile = document.querySelector(".profile__edit-button");
+const popupEditProfile = document.querySelector(".popup_type-user");
+const popupCloseButtonProfile = document.querySelector(".popup__close-button_type_user");
 const profileNameInput = document.querySelector("#profile-name");
 const profileJobInput = document.querySelector("#profile-occupation");
 const popupNameInput = document.querySelector("#popup-user-name");
 const popupJobInput = document.querySelector("#popup-user-job");
-const formElementUser = document.querySelector("#popup-user-container");
+const formElementUser = document.querySelector(".popup__form_user");
 
-editPtofileButton.addEventListener("click", function () {
-  editPopupProfile.classList.add("popup_opened");
+const buttonEditPlace = document.querySelector(".profile__add-button");
+const popupEditPlace = document.querySelector(".popup_type-place");
+const popupCloseButtonPlace = document.querySelector(".popup__close-button_type_place");
+const formPlace = document.querySelector(".popup__form-place");
+
+const popupZoomImage = document.querySelector(".popup_type-zoom");
+const popupCloseButtonImage = document.querySelector(".popup__close-button_type_image");
+const imageZoom = document.querySelector(".popup__image");
+const headingZoom = document.querySelector(".popup__heading");
+
+const element = document.querySelector(".element");
+const cardTemplate = document.querySelector("#element-template").content;
+const imageName = document.querySelector("#input-place-name-image");
+const imageLink = document.querySelector("#input-place-link-image");
+
+function openPopup(popupElement) {
+  popupElement.classList.add("popup_opened");
+}
+
+function closePopup(popupElement) {
+  popupElement.classList.remove("popup_opened");
+}
+
+buttonEditPtofile.addEventListener("click", function () {
+  openPopup(popupEditProfile);
   popupNameInput.value = profileNameInput.textContent;
   popupJobInput.value = profileJobInput.textContent;
 });
 
-closePopupProfile.addEventListener("click", closePopupUser);
-
-function closePopupUser() {
-  editPopupProfile.classList.remove("popup_opened");
-}
+popupCloseButtonProfile.addEventListener("click", function () {
+  closePopup(popupEditProfile);
+});
 
 function handleFormUserSubmit(evt) {
   evt.preventDefault();
   profileNameInput.textContent = popupNameInput.value;
   profileJobInput.textContent = popupJobInput.value;
-  closePopupUser();
+  closePopup(popupEditProfile);
 }
+
 formElementUser.addEventListener("submit", handleFormUserSubmit);
 
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+buttonEditPlace.addEventListener("click", function () {
+  openPopup(popupEditPlace);
+  formPlace.reset();
+});
 
-const element = document.querySelector(".element");
-const editPlaceButton = document.querySelector(".profile__add-button");
-const editPopupPlace = document.querySelector("#popup-place");
-const closePopupPlace = document.querySelector("#close-popup-place");
-const closePopupImage = document.querySelector("#close-popup-image");
-const formElementPlace = document.querySelector("#popup-place-container");
-const formPlace = document.querySelector("#popup-form-place");
-const popupZoom = document.querySelector(".zoom");
-const popupImageZoom = document.querySelector(".zoom__image");
-const popupZoomHeading = document.querySelector(".zoom__heading")
+popupCloseButtonPlace.addEventListener("click", function () {
+  closePopup(popupEditPlace);
+});
 
 function createCards(card) {
-  const newElement = document
-    .querySelector("#element-template")
-    .content.cloneNode(true);
+  const newElement = cardTemplate.cloneNode(true);
   const elementCaption = newElement.querySelector(".element__caption");
   const elementImage = newElement.querySelector(".element__image");
   const likeCardButton = newElement.querySelector(".element__like-button");
-  const deleteCardButton = newElement.querySelector(".element__delete-button");
-  const openPopupImage = newElement.querySelector(".element__button-image");
+  const buttonDeleteCard = newElement.querySelector(".element__delete-button");
+  const popupOpenImage = newElement.querySelector(".element__button-image");
   elementCaption.textContent = card.name;
   elementImage.setAttribute("src", card.link);
   elementImage.setAttribute("alt", card.name);
   likeCardButton.addEventListener("click", handleLikeButtonClick);
-  deleteCardButton.addEventListener("click", handleDeleteButtonClick);
-  openPopupImage.addEventListener("click", () => handleZoomImageOpen(card));
-  element.prepend(newElement);
+  buttonDeleteCard.addEventListener("click", handleDeleteButtonClick);
+  popupOpenImage.addEventListener("click", () => handleZoomImageOpen(card));
+  return newElement
 }
 
-initialCards.forEach(createCards);
-
-editPlaceButton.addEventListener("click", function () {
-  editPopupPlace.classList.add("popup_opened");
-  formPlace.reset();
+initialCards.forEach((item) => {
+  const newCard = createCards(item);
+  renderCard(newCard)
 });
 
-closePopupPlace.addEventListener("click", closePopupContainerPlace);
-
-function closePopupContainerPlace() {
-  editPopupPlace.classList.remove("popup_opened");
-}
-
-function handleFormPlaceSubmit(evt) {
-  evt.preventDefault();
-  const imageName = document.querySelector("#input-place-name").value;
-  const imageLink = document.querySelector("#input-place-link").value;
-  const createNewCard = {
-    name: imageName,
-    link: imageLink,
-  };
-  createCards(createNewCard);
-  closePopupContainerPlace();
-}
-
-formElementPlace.addEventListener("submit", handleFormPlaceSubmit);
-
-function handleLikeButtonClick(evt) {
-  const likeButton = evt.target;
-  likeButton.classList.toggle("element__like-button_active");
-}
-
-function handleDeleteButtonClick(evt) {
-  const deleteButton = evt.target;
-  const cardTrash = deleteButton.closest(".element__list");
-  cardTrash.remove();
+function renderCard(card) {
+  element.prepend(card);
 }
 
 function handleZoomImageOpen(card) {
-  popupZoom.classList.add("zoom_opened");
-  popupImageZoom.setAttribute("src", card.link);
-  popupImageZoom.setAttribute("alt", card.name);
-  popupZoomHeading.textContent = card.name;
+  openPopup(popupZoomImage);
+  imageZoom.setAttribute("src", card.link);
+  imageZoom.setAttribute("alt", card.name);
+  headingZoom.textContent = card.name;
 }
 
-closePopupImage.addEventListener("click", closePopupContainerImage);
+popupCloseButtonImage.addEventListener("click", function closePopupZoomImage() {
+  closePopup(popupZoomImage);
+});
 
-function closePopupContainerImage() {
-  popupZoom.classList.remove("zoom_opened");
+function handleFormPlaceSubmit(evt) {
+  evt.preventDefault();
+  const imageNameNewCard = imageName.value;
+  const imageLinkNewCard = imageLink.value;
+  const createNewCard = {
+    name: imageNameNewCard,
+    link: imageLinkNewCard,
+  };
+  const newCard = createCards(createNewCard);
+  renderCard(newCard)
+  closePopup(popupEditPlace);
+}
+
+formPlace.addEventListener("submit", handleFormPlaceSubmit);
+
+function handleLikeButtonClick(evt) {
+  const likeButtonCard = evt.target;
+  likeButtonCard.classList.toggle("element__like-button_active");
+}
+
+function handleDeleteButtonClick(evt) {
+  const deleteButtonCard = evt.target;
+  const cardTrash = deleteButtonCard.closest(".element__list");
+  cardTrash.remove();
 }
