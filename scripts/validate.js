@@ -1,4 +1,4 @@
-export const config = {
+const config = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   inputErrorClass: ".popup__input-error_type_",
@@ -75,7 +75,7 @@ const hasInvalidInput = (inputList) => {
   );
 };
 
-const toggleButtonState = (submitButton, inactiveButtonClass, inputList) => {
+const toggleButtonState = (inputList, submitButton, inactiveButtonClass) => {
   if (!hasInvalidInput(inputList)) {
     disableButton(submitButton, inactiveButtonClass);
   } else {
@@ -92,7 +92,7 @@ const setEventListener = (
   inactiveButtonClass
 ) => {
   inputList.forEach((inputElement) => {
-    toggleButtonState(submitButton, inactiveButtonClass, inputList);
+    toggleButtonState(inputList, submitButton, inactiveButtonClass);
     inputElement.addEventListener("input", () => {
       checkInputValidity(
         inputElement,
@@ -100,7 +100,7 @@ const setEventListener = (
         errorClass,
         inputVisibleError
       );
-      toggleButtonState(submitButton, inactiveButtonClass, inputList);
+      toggleButtonState(inputList, submitButton, inactiveButtonClass);
     });
   });
 };
@@ -115,6 +115,9 @@ const enableValidation = (config) => {
       formElement.querySelectorAll(config.inputSelector)
     );
     const submitButton = formElement.querySelector(config.submitButtonSelector);
+    formElement.addEventListener("reset", () => {
+      disableButton(submitButton, config.inactiveButtonClass);
+    });
     setEventListener(
       inputList,
       submitButton,
@@ -123,21 +126,6 @@ const enableValidation = (config) => {
       config.inputVisibleError,
       config.inactiveButtonClass
     );
-  });
-};
-
-export const cleanInputError = (formElement, config) => {
-  const errorList = Array.from(
-    formElement.querySelectorAll(`.${config.errorClass}`)
-  );
-  errorList.forEach((error) => {
-    error.textContent = "";
-  });
-  const inputList = Array.from(
-    formElement.querySelectorAll(`${config.inputSelector}`)
-  );
-  inputList.forEach((input) => {
-    input.classList.remove(config.inputVisibleError);
   });
 };
 

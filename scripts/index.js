@@ -1,28 +1,20 @@
 import { initialCards } from "./cards.js";
-import { config, cleanInputError } from "./validate.js";
 
 const buttonEditPtofile = document.querySelector(".profile__edit-button");
 const popupEditProfile = document.querySelector(".popup_type-user");
-const popupCloseButtonProfile = document.querySelector(
-  ".popup__close-button_type_user"
-);
+
 const profileNameInput = document.querySelector("#profile-name");
 const profileJobInput = document.querySelector("#profile-occupation");
 const popupNameInput = document.querySelector("#popup-user-name");
 const popupJobInput = document.querySelector("#popup-user-job");
-const formElementUser = document.querySelector(".popup__form_user");
+const formElementUser = document.forms["popup_form_user"];
 
 const buttonEditPlace = document.querySelector(".profile__add-button");
 const popupEditPlace = document.querySelector(".popup_type-place");
-const popupCloseButtonPlace = document.querySelector(
-  ".popup__close-button_type_place"
-);
-const formPlace = document.querySelector(".popup__form-place");
+
+const formPlace = document.forms["popup_form_place"];
 
 const popupZoomImage = document.querySelector(".popup_type-zoom");
-const popupCloseButtonImage = document.querySelector(
-  ".popup__close-button_type_image"
-);
 const imageZoom = document.querySelector(".popup__image");
 const headingZoom = document.querySelector(".popup__heading");
 
@@ -33,39 +25,45 @@ const cardTemplate = document
 const imageName = document.querySelector("#input-place-name-image");
 const imageLink = document.querySelector("#input-place-link-image");
 
-const popupWindowList = Array.from(document.querySelectorAll(".popup"));
-popupWindowList.forEach((popupWindow) => {
-  popupWindow.addEventListener("click", (evt) => {
-    if (evt.target === popupWindow) {
-      closePopup(popupWindow);
+function closePopupByEscape(evt) {
+  const openedPopup = document.querySelector(".popup_opened");
+  if (evt.code === "Escape") {
+    closePopup(openedPopup);
+  }
+}
+
+const popupList = Array.from(document.querySelectorAll(".popup"));
+popupList.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
     }
-  });
-  document.addEventListener("keydown", (evt) => {
-    if (evt.code === "Escape") {
-      closePopup(popupWindow);
+    if (evt.target.classList.contains("popup__close-button")) {
+      closePopup(popup);
     }
   });
 });
 
+const submitButtonDisabled = (popupElement) => {
+  const submitButton = popupElement.querySelector(".popup__submit-button");
+  submitButton?.classList.add("popup__submit-button_disabled");
+  submitButton.setAttribute("disabled", true);
+};
+
 function openPopup(popupElement) {
-  cleanInputError(popupElement, config);
   popupElement.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupByEscape);
 }
 
 function closePopup(popupElement) {
   popupElement.classList.remove("popup_opened");
-  const submitButton = popupElement.querySelector(".popup__submit-button");
-  submitButton?.classList.add("popup__submit-button_disabled");
+  document.removeEventListener("keydown", closePopupByEscape);
 }
 
 buttonEditPtofile.addEventListener("click", function () {
   openPopup(popupEditProfile);
   popupNameInput.value = profileNameInput.textContent;
   popupJobInput.value = profileJobInput.textContent;
-});
-
-popupCloseButtonProfile.addEventListener("click", function () {
-  closePopup(popupEditProfile);
 });
 
 function handleFormUserSubmit() {
@@ -78,11 +76,6 @@ formElementUser.addEventListener("submit", handleFormUserSubmit);
 
 buttonEditPlace.addEventListener("click", function () {
   openPopup(popupEditPlace);
-  formPlace.reset();
-});
-
-popupCloseButtonPlace.addEventListener("click", function () {
-  closePopup(popupEditPlace);
 });
 
 function createCards(card) {
@@ -121,10 +114,6 @@ function handleZoomImageOpen(card) {
   headingZoom.textContent = card.name;
 }
 
-popupCloseButtonImage.addEventListener("click", function closePopupZoomImage() {
-  closePopup(popupZoomImage);
-});
-
 function handleFormPlaceSubmit() {
   const imageNameNewCard = imageName.value;
   const imageLinkNewCard = imageLink.value;
@@ -135,6 +124,8 @@ function handleFormPlaceSubmit() {
   const newCard = createCards(createNewCard);
   renderCard(newCard);
   closePopup(popupEditPlace);
+  formPlace.reset();
+  submitButtonDisabled(popupEditPlace);
 }
 
 formPlace.addEventListener("submit", handleFormPlaceSubmit);
