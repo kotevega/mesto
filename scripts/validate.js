@@ -31,12 +31,12 @@ const hideInputError = (
   inputElement.classList.remove(inputVisibleError);
 };
 
-const disableButton = (submitButton, inactiveButtonClass) => {
+const enableButton = (submitButton, inactiveButtonClass) => {
   submitButton.classList.remove(inactiveButtonClass);
   submitButton.disabled = false;
 };
 
-const enableButton = (submitButton, inactiveButtonClass) => {
+const disableButton = (submitButton, inactiveButtonClass) => {
   submitButton.classList.add(inactiveButtonClass);
   submitButton.disabled = true;
 };
@@ -77,9 +77,9 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, submitButton, inactiveButtonClass) => {
   if (!hasInvalidInput(inputList)) {
-    disableButton(submitButton, inactiveButtonClass);
-  } else {
     enableButton(submitButton, inactiveButtonClass);
+  } else {
+    disableButton(submitButton, inactiveButtonClass);
   }
 };
 

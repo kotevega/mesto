@@ -26,8 +26,8 @@ const imageName = document.querySelector("#input-place-name-image");
 const imageLink = document.querySelector("#input-place-link-image");
 
 function closePopupByEscape(evt) {
-  const openedPopup = document.querySelector(".popup_opened");
   if (evt.code === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
 }
@@ -43,12 +43,6 @@ popupList.forEach((popup) => {
     }
   });
 });
-
-const submitButtonDisabled = (popupElement) => {
-  const submitButton = popupElement.querySelector(".popup__submit-button");
-  submitButton?.classList.add("popup__submit-button_disabled");
-  submitButton.setAttribute("disabled", true);
-};
 
 function openPopup(popupElement) {
   popupElement.classList.add("popup_opened");
@@ -125,7 +119,6 @@ function handleFormPlaceSubmit() {
   renderCard(newCard);
   closePopup(popupEditPlace);
   formPlace.reset();
-  submitButtonDisabled(popupEditPlace);
 }
 
 formPlace.addEventListener("submit", handleFormPlaceSubmit);
