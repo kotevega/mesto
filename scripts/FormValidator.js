@@ -1,25 +1,11 @@
-export { config, FormValidator };
-
-const config = {
-  inputElement: ".popup__input",
-  inputErrorClass: ".popup__input-error_type_",
-  errorClass: "popup__input-error",
-  inputVisibleError: "popup__input_visible-error",
-  submitButtonSelector: ".popup__submit-button",
-  inactiveButtonClass: "popup__submit-button_disabled",
-};
-
-class FormValidator {
+export class FormValidator {
   constructor(form, config) {
     this._form = form;
-    this._inputElement = this._form.querySelector(config.inputElement);
+    this._inputElement = this._form.querySelectorAll(config.inputElement);
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = this._form.querySelector(config.errorClass);
     this._inputVisibleError = this._form.querySelector(
       config.inputVisibleError
-    );
-    this._submitButtonSelector = this._form.querySelector(
-      config.submitButtonSelector
     );
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputList = this._form.querySelectorAll(config.inputElement);
@@ -93,12 +79,6 @@ class FormValidator {
   }
 
   enableValidation() {
-    this._form.addEventListener("submit", function (evt) {
-      evt.preventDefault();
-    });
-    this._form.addEventListener("reset", () => {
-      this.disableButton();
-    });
     this._setEventListener();
   }
 }
