@@ -1,14 +1,12 @@
 export class FormValidator {
   constructor(form, config) {
     this._form = form;
-    this._inputElement = this._form.querySelectorAll(config.inputElement);
+    this._inputElement = config.inputElement;
     this._inputErrorClass = config.inputErrorClass;
-    this._errorClass = this._form.querySelector(config.errorClass);
-    this._inputVisibleError = this._form.querySelector(
-      config.inputVisibleError
-    );
+    this._errorClass = config.errorClass;
+    this._inputVisibleError = config.inputVisibleError;
     this._inactiveButtonClass = config.inactiveButtonClass;
-    this._inputList = this._form.querySelectorAll(config.inputElement);
+    this._inputList = Array.from(this._form.querySelectorAll(config.inputElement));
     this._submitButton = this._form.querySelector(config.submitButtonSelector);
   }
 
