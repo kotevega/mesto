@@ -14,8 +14,8 @@ const initialCards = [
       link: "https://images.unsplash.com/photo-1630735978992-e4881d957c88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzOTAwNXwwfDF8c2VhcmNofDQ0fHxzdmV0bG9nb3Jza3xlbnwwfHx8fDE2ODExMzkwMzY&ixlib=rb-4.0.3&q=80&w=400",
     },
     {
-      name: "Краснолеьсе",
-      link: "http://kaliningrad-city24.ru/wp-content/uploads/2018/08/most.jpg",
+      name: "Краснолесье",
+      link: "https://kaliningrad-city24.ru/wp-content/uploads/2018/08/most.jpg",
     },
     {
       name: "Кафедральный собор",
