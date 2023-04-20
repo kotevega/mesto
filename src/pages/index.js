@@ -60,10 +60,11 @@ buttonEditPlace.addEventListener("click", () => {
   placeFormValidation.disableButton();
 });
 
+const popupImage = new PopupWithImage(".popup_type-zoom");
+popupImage.setEventListeners();
+
 function handleCardClick(name, link) {
-  const popupImage = new PopupWithImage(".popup_type-zoom");
   popupImage.open(name, link);
-  popupImage.setEventListeners();
 }
 
 function renderCard(card) {
