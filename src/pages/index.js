@@ -14,7 +14,7 @@ const formAvatar = document.forms["popup_form_avatar"];
 const formPlace = document.forms["popup_form_place"];
 
 const buttonEditPtofile = document.querySelector(".profile__edit-button");
-const buttonEditAvatar = document.querySelector(".profile__edit_avatar");
+const buttonEditAvatar = document.querySelector(".profile__edit-avatar");
 const buttonEditPlace = document.querySelector(".profile__add-button");
 
 const popupNameInput = document.querySelector("#popup-name");
@@ -33,10 +33,6 @@ const api = new Api({
   },
 });
 
-avatarFormValidation.enableValidation();
-profileFormValidation.enableValidation();
-placeFormValidation.enableValidation();
-
 Promise.all([api.getUserInfoFromApi(), api.getInitialCardsApi()])
   .then(([responseUser, responseCard]) => {
     userNowId = responseUser._id;
@@ -45,15 +41,6 @@ Promise.all([api.getUserInfoFromApi(), api.getInitialCardsApi()])
     section.renderItems(responseCard, userNowId);
   })
   .catch((err) => console.log(`Ошибка: ${err}`));
-
-const section = new Section(
-  {
-    renderer: (items, userId) => {
-      section.addItem(renderCard(items, userId));
-    },
-  },
-  ".element"
-);
 
 const renderCard = (data, user) => {
   const newCard = new Card({
@@ -92,6 +79,15 @@ const renderCard = (data, user) => {
   return newCard.createCard();
 };
 
+const section = new Section(
+  {
+    renderer: (items, userId) => {
+      section.addItem(renderCard(items, userId));
+    },
+  },
+  ".element"
+);
+
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__occupation",
@@ -114,12 +110,6 @@ const popupAvatar = new PopupWithForm({
   },
 });
 
-buttonEditAvatar.addEventListener("click", () => {
-  popupAvatar.open();
-  avatarFormValidation.resetValidation();
-  avatarFormValidation.disableButton();
-});
-
 const popupProfile = new PopupWithForm({
   popupSelector: ".popup_type-user",
   handleFormSubmit: (formData) => {
@@ -132,14 +122,6 @@ const popupProfile = new PopupWithForm({
         popupProfile.renderLoader(false);
       });
   },
-});
-
-buttonEditPtofile.addEventListener("click", () => {
-  popupProfile.open();
-  popupNameInput.value = userInfo.getUserInfo().name;
-  popupJobInput.value = userInfo.getUserInfo().about;
-  profileFormValidation.resetValidation();
-  profileFormValidation.disableButton();
 });
 
 const popupPlace = new PopupWithForm({
@@ -156,12 +138,6 @@ const popupPlace = new PopupWithForm({
         popupPlace.renderLoader(false);
       });
   },
-});
-
-buttonEditPlace.addEventListener("click", () => {
-  popupPlace.open();
-  placeFormValidation.resetValidation();
-  placeFormValidation.disableButton();
 });
 
 const popupDeleteAccept = new PopupWithConfirmation({
@@ -184,8 +160,32 @@ const popupDeleteAccept = new PopupWithConfirmation({
 
 const popupImage = new PopupWithImage(".popup_type-zoom");
 
+avatarFormValidation.enableValidation();
+profileFormValidation.enableValidation();
+placeFormValidation.enableValidation();
+
 popupAvatar.setEventListeners();
 popupProfile.setEventListeners();
 popupImage.setEventListeners();
 popupPlace.setEventListeners();
 popupDeleteAccept.setEventListeners();
+
+buttonEditAvatar.addEventListener("click", () => {
+  popupAvatar.open();
+  avatarFormValidation.resetValidation();
+  avatarFormValidation.disableButton();
+});
+
+buttonEditPtofile.addEventListener("click", () => {
+  popupProfile.open();
+  popupNameInput.value = userInfo.getUserInfo().name;
+  popupJobInput.value = userInfo.getUserInfo().about;
+  profileFormValidation.resetValidation();
+  profileFormValidation.disableButton();
+});
+
+buttonEditPlace.addEventListener("click", () => {
+  popupPlace.open();
+  placeFormValidation.resetValidation();
+  placeFormValidation.disableButton();
+});
