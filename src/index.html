@@ -8,11 +8,19 @@
   </head>
   <body class="page">
     <header class="header">
-      <img src="<%=require('./images/logo.svg')%>" alt="логотип Место" class="header__logo">
+      <img
+        src="<%=require('./images/logo.svg')%>"
+        alt="логотип Место"
+        class="header__logo"
+      >
     </header>
     <main class="main">
       <section class="profile">
-        <button type="button" aria-label="Редактирование аватара" class="profile__edit_avatar">
+        <button
+          type="button"
+          aria-label="Редактирование аватара"
+          class="profile__edit_avatar"
+        >
           <img
             src="<%=require('./images/Avatar.jpg')%>"
             alt="фото пользователя"
@@ -22,12 +30,20 @@
         <div class="profile__info">
           <div class="profile__user">
             <div class="profile__user-edit">
-              <h1 id="profile-name" class="profile__name"></h1>
-              <button type="button" aria-label="Редактирование профиля" class="profile__edit-button"></button>
+              <h1 id="profile-name" class="profile__name">Жак-Ив Кусто</h1>
+              <button
+                type="button"
+                aria-label="Редактирование профиля"
+                class="profile__edit-button"
+              ></button>
             </div>
-            <p id="profile-occupation" class="profile__occupation"></p>
+            <p id="profile-occupation" class="profile__occupation">Исследователь океана</p>
           </div>
-          <button type="button" aria-label="Редактирование карточки" class="profile__add-button"></button>
+          <button
+            type="button"
+            aria-label="Редактирование карточки"
+            class="profile__add-button"
+          ></button>
         </div>
       </section>
       <section class="elements" aria-label="Фотографии пользователя">
@@ -37,14 +53,25 @@
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
+    <template class="element-template">
+      <li class="element__list">
+        <button class="element__button-image">
+          <img class="element__image" src="#" alt="#">
+        </button>
+        <button type="button" class="element__delete-button"></button>
+        <div class="element__object">
+          <h2 class="element__caption"></h2>
+          <div class="element__likes">
+            <button type="button" class="element__like-button"></button>
+            <span class="element__counter"></span>
+          </div>
+        </div>
+      </li>
+    </template>
     <div id="popup-avatar" class="popup popup_type-avatar">
       <div id="popup-avatar-container" class="popup__container">
         <h2 class="popup__title">Обновить аватар</h2>
-        <form
-          name="popup_form_avatar"
-          class="popup__form"
-          novalidate
-        >
+        <form name="popup_form_avatar" class="popup__form" novalidate>
           <label class="popup__fildset">
             <input
               type="url"
@@ -71,11 +98,7 @@
     <div id="popup-user" class="popup popup_type-user">
       <div id="popup-user-container" class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form
-          name="popup_form_user"
-          class="popup__form"
-          novalidate
-        >
+        <form name="popup_form_user" class="popup__form" novalidate>
           <label class="popup__fildset">
             <input
               type="text"
@@ -119,11 +142,7 @@
     <div id="popup-place" class="popup popup_type-place">
       <div id="popup-place-container" class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form
-          name="popup_form_place"
-          class="popup__form"
-          novalidate
-        >
+        <form name="popup_form_place" class="popup__form" novalidate>
           <label class="popup__fildset">
             <input
               type="text"
@@ -178,33 +197,15 @@
     <div id="popup-accept" class="popup popup_type-accept">
       <div id="popup-accept-container" class="popup__container">
         <h2 class="popup__title">Вы уверены?</h2>
-        <form
-        name="popup_form_accept"
-        class="popup__form"
-        >
+        <form name="popup_form_accept" class="popup__form">
           <button type="submit" class="popup__submit-button">Да</button>
         </form>
         <button
           type="button"
-          aria-label="Закртыие попапа"
+          aria-label="Закрытие попапа"
           class="popup__close-button"
         ></button>
       </div>
     </div>
-    <template class="element-template">
-      <li class="element__list">
-        <button class="element__button-image">
-          <img class="element__image" src="#" alt="#">
-        </button>
-        <button type="button" class="element__delete-button"></button>
-        <div class="element__object">
-          <h2 class="element__caption"></h2>
-          <div class="element__likes">
-            <button type="button" class="element__like-button"></button>
-            <span class="element__counter"></span>
-          </div>
-        </div>
-      </li>
-    </template>
   </body>
 </html>
