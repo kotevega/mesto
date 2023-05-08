@@ -80,16 +80,17 @@ export class Card {
     return this._likes.some((item) => item._id === this._userId);
   }
 
-  switchButtonLike() {
-    this._likeCardButton.classList.toggle("element__like-button_active");
-  }
-
   countLikes(dataCard) {
     this._likes = dataCard.likes;
     if (this._likes.length === 0) {
       this._elementLikeCounter.textContent = "0";
     } else {
       this._elementLikeCounter.textContent = this._likes.length;
+    }
+    if (this._checkLikes()) {
+      this._likeCardButton.classList.add("element__like-button_active");
+    } else {
+      this._likeCardButton.classList.remove("element__like-button_active");
     }
   }
 }

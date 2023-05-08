@@ -61,7 +61,6 @@ const renderCard = (data, user) => {
         .putCardLikeToApi(cardId)
         .then((res) => {
           newCard.countLikes(res);
-          newCard.switchButtonLike(res);
         })
         .catch((err) => console.log(`Ошибка: ${err}`));
     },
@@ -71,7 +70,6 @@ const renderCard = (data, user) => {
         .deleteCardLikeFromApi(cardId)
         .then((res) => {
           newCard.countLikes(res);
-          newCard.switchButtonLike(res);
         })
         .catch((err) => console.log(`Ошибка: ${err}`));
     },
@@ -102,6 +100,7 @@ const popupAvatar = new PopupWithForm({
       .patchUserAvatarToApi(data)
       .then((resUser) => {
         userInfo.setUserAvatar(resUser);
+        popupAvatar.close();
       })
       .catch((err) => console.log(`Ошибка: ${err}`))
       .finally(() => {
@@ -116,7 +115,10 @@ const popupProfile = new PopupWithForm({
     popupProfile.renderLoader(true, "Сохранение...");
     api
       .patchUserInfoToApi(formData)
-      .then((res) => userInfo.setUserInfo(res))
+      .then((res) => {
+        userInfo.setUserInfo(res);
+        popupProfile.close();
+      })
       .catch((err) => console.log(`Ошибка: ${err}`))
       .finally(() => {
         popupProfile.renderLoader(false);
@@ -132,6 +134,7 @@ const popupPlace = new PopupWithForm({
       .postNewCardApi(formData.imageName, formData.imageLink)
       .then((newCardFromPopup) => {
         section.addItem(renderCard(newCardFromPopup, userNowId));
+        popupPlace.close();
       })
       .catch((err) => console.log(`Ошибка: ${err}`))
       .finally(() => {
