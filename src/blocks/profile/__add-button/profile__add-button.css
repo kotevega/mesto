@@ -17,3 +17,7 @@
     background: url("../../../images/Add-Button_mobile.svg") center no-repeat;
   }
 }
+
+.profile__add-button:focus {
+  outline: 0px;
+}

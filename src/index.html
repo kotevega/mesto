@@ -12,18 +12,20 @@
     </header>
     <main class="main">
       <section class="profile">
-        <img
-          src="<%=require('./images/Avatar.jpg')%>"
-          alt="фото пользователя"
-          class="profile__avatar"
-        >
+        <button type="button" aria-label="Редактирование аватара" class="profile__edit_avatar">
+          <img
+            src="<%=require('./images/Avatar.jpg')%>"
+            alt="фото пользователя"
+            class="profile__avatar"
+          >
+        </button>
         <div class="profile__info">
           <div class="profile__user">
             <div class="profile__user-edit">
-              <h1 id="profile-name" class="profile__name">Жак-Ив Кусто</h1>
+              <h1 id="profile-name" class="profile__name"></h1>
               <button type="button" aria-label="Редактирование профиля" class="profile__edit-button"></button>
             </div>
-            <p id="profile-occupation" class="profile__occupation">Исследователь океана</p>
+            <p id="profile-occupation" class="profile__occupation"></p>
           </div>
           <button type="button" aria-label="Редактирование карточки" class="profile__add-button"></button>
         </div>
@@ -35,18 +37,37 @@
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <template class="element-template">
-      <li class="element__list">
-        <button class="element__button-image">
-          <img class="element__image" src="#" alt="#">
-        </button>
-        <button type="button" class="element__delete-button"></button>
-        <div class="element__object">
-          <h2 class="element__caption"></h2>
-          <button type="button" class="element__like-button"></button>
-        </div>
-      </li>
-    </template>
+    <div id="popup-avatar" class="popup popup_type-avatar">
+      <div id="popup-avatar-container" class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form
+          name="popup_form_avatar"
+          class="popup__form"
+          novalidate
+        >
+          <label class="popup__fildset">
+            <input
+              type="url"
+              name="avatar"
+              placeholder="Ссылка на картинку"
+              id="input-avatar"
+              class="popup__input"
+              required
+            >
+            <span
+              class="popup__input-error popup__input-error_type_avatar"
+            ></span>
+          </label>
+          <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+        <button
+          type="button"
+          aria-label="Закртыие попапа"
+          id="close-popup-avatar"
+          class="popup__close-button"
+        ></button>
+      </div>
+    </div>
     <div id="popup-user" class="popup popup_type-user">
       <div id="popup-user-container" class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -73,16 +94,16 @@
           <label class="popup__fildset">
             <input
               type="text"
-              name="occupation"
+              name="about"
               placeholder="Род деятельности"
-              id="popup-occupation"
+              id="popup-about"
               class="popup__input"
               required
               minlength="2"
               maxlength="200"
             >
             <span
-              class="popup__input-error popup__input-error_type_occupation"
+              class="popup__input-error popup__input-error_type_about"
             ></span>
           </label>
           <button type="submit" class="popup__submit-button">Сохранить</button>
@@ -154,5 +175,36 @@
         ></button>
       </div>
     </div>
+    <div id="popup-accept" class="popup popup_type-accept">
+      <div id="popup-accept-container" class="popup__container">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form
+        name="popup_form_accept"
+        class="popup__form"
+        >
+          <button type="submit" class="popup__submit-button">Да</button>
+        </form>
+        <button
+          type="button"
+          aria-label="Закртыие попапа"
+          class="popup__close-button"
+        ></button>
+      </div>
+    </div>
+    <template class="element-template">
+      <li class="element__list">
+        <button class="element__button-image">
+          <img class="element__image" src="#" alt="#">
+        </button>
+        <button type="button" class="element__delete-button"></button>
+        <div class="element__object">
+          <h2 class="element__caption"></h2>
+          <div class="element__likes">
+            <button type="button" class="element__like-button"></button>
+            <span class="element__counter"></span>
+          </div>
+        </div>
+      </li>
+    </template>
   </body>
 </html>
